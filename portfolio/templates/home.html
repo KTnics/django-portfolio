@@ -1,0 +1,155 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- External Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+  /* Global Styles */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Hero Section */
+  header.row {
+    padding: 2rem 0;
+    align-items: center;
+    background: linear-gradient(to right, #1a1a1a, #333);
+  }
+
+  header img {
+    max-width: 100%;
+    border-radius: 50%;
+    border: 5px solid #007bff;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  header h3 {
+    font-size: 1.5rem;
+    color: #17a2b8;
+  }
+
+  header p {
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  header .btn {
+    background: #007bff;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  header .btn:hover {
+    background: #0056b3;
+  }
+
+  /* Portfolio Section */
+  .row.my-4 {
+    margin-top: 2rem;
+    padding: 2rem;
+  }
+
+  .row.my-4 h3 {
+    color: #17a2b8;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .row.my-4 p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: #aaaaaa;
+  }
+
+  .card {
+    background: #222;
+    border: none;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+
+  .card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .card h2 {
+    color: #17a2b8;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #e0e0e0;
+  }
+
+  .card .btn {
+    background: #17a2b8;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .card .btn:hover {
+    background: #138496;
+    color: #fff;
+  }
+</style>
+
+<!-- Hero Section -->
+<header class="row bg-black">
+  <div class="col-md-4">
+    <img src="{% static 'portfolio/profile.jpeg' %}" alt="Profile Image" />
+  </div>
+
+  <div class="col-md-8 my-auto p-4">
+    <h1>I am <strong>Nikhil Patil</strong></h1>
+    <h3>I'm a Frontend and mobile-app developer</h3>
+    <p>I am an MCA graduate with expertise in Flutter and frontend development. I also possess knowledge of testing, allowing me to build robust and user-friendly applications. With a passion for learning and innovation, I enjoy creating solutions that make a difference.</p>
+    <a class="btn btn-primary btn-lg rounded-0 my-3" href="{% static 'portfolio/cv.pdf' %}">Download my CV</a>
+    
+  </div>
+</header>
+
+<!-- Portfolio Section -->
+<div class="row my-4 text-center">
+  <h3>My Projects</h3>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, aperiam?</p>
+
+  {% for project in projects %}
+  <div class="col-md-4 p-4">
+    <div class="card bg-black card-project">
+      <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" />
+
+      <div class="card-body">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+
+        {% if project.url %}
+        <a href="{{ project.url }}" class="btn btn-light rounded-0 btn-sm" target="__blank" rel="noreferrer">Visit the
+          Project</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
